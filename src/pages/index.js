@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
 
-import SEO from "./seo"
+//import SEO from "./seo"
 import { SocialIcon } from 'react-social-icons';
 
 // main: '#4285F5',
@@ -211,7 +211,6 @@ const App = () => {
 			<div style={{paddingTop: 50, backgroundColor: "white", scrollBehavior: "smooth"}}>
 				{introduction}
 			</div>
-			{SEO}
 		</MuiThemeProvider>
 	)
 }
