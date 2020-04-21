@@ -1,4 +1,7 @@
-# What is ZEIT?
-http://www.garysheng.com/
+# Frikky.com
+This is a personal website built to have simple static hosting with ReactJS. If you want the same basic layout, open /src/pages/index.js and change the top part of the App const.
 
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/gatsbyjs/gatsby-starter-hello-world)
+https://frikky.com
+
+## Blogpost
+A blogpost will eventually come on this over at https://medium.com/@frikkylikeme
