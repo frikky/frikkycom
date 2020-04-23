@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
-import {isMobile, BrowserView, MobileView} from "react-device-detect";
+import React, {useState, useEffect} from 'react';
+import {isMobile} from "react-device-detect";
+import ReactGA from 'react-ga';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Paper from '@material-ui/core/Paper';
 
 //import SEO from "./seo"
 import { SocialIcon } from 'react-social-icons';
@@ -49,6 +48,7 @@ const theme = createMuiTheme({
 const App = () => {
 	const title = "Fredrik"
 	const subtitle = "Entrepreneur, developer and security engineer"
+	const googleAnalyticsCode = "UA-147420730-2"
 	const platforms = [{
 		"url": "https://twitter.com/frikkylikeme",
 		"network": "twitter",
@@ -68,50 +68,44 @@ const App = () => {
 	]
 
 	const workingOn = [{
-		"title": "Niceable - Fundraising",
+		"title": "Niceable - Fundraising for charities",
 		"role": "Co-Founder & CTO",
-		"description": "This is Niceable",
+		"description": "Niceable is a fundraising platform for non-profits. We use Raffles to make charitable giving accessible and fun with a minimum entry amount of only $1.",
 		"link": "https://niceable.co",
+		"image": "/images/niceable.png",
 	},
 	{
-		"title": "Habitual - Chatbot",
+		"title": "Habitual - Routine chatbot",
 		"role": "Developer",
-		"description": "Habit bot to stop all the habits",
+		"description": "Habitual is a chatbot I made to help keep myself accountable. It periodically checks in to see whether I've done the habit I'm trying to incorporate. Future vision is more dynamic chatting and a personal CRM-like system. Has an accountability system where if you screw up, it will tell a friend",
 		"link": "https://m.me/habitualbot",
+		"image": "/images/torbjorn.jpg",
 	},
 	{
-		"title": "Shuffle - Cyber Security",
+		"title": "Shuffle - Cyber Security automation",
 		"role": "Co-Founder & CEO",
-		"description": "This is Shuffle",
+		"description": "Shuffle was created as a need for framework implementation automation in Information Security. Being a security engineer and forensic analyst taught me a lot about the need for automation, and this was a new, accessible approach.",
 		"link": "https://shuffler.io",
+		"image": "/images/shuffler.png",
+	},
+	{
+		"title": "Alpakafarm - Webshop",
+		"role": "Tech and sales help",
+		"description": "Alpakafarm is my dads' tourist farm that started struggling due to COVID-19. We're working on setting up the webshop to help them through this tough season!",
+		"link": "https://alpakafarm.eu",
+		"image": "/images/alpaca.webp",
 	}
 	]
 
-	const AppbarButton = (props) => {
-		const [hover, setHover] = useState(false)	
-		const style = {
-			fontSize: 20,
-			height: 34,
-			marginTop: 9,
+  useEffect(() => {
+		if (window.location.hostname !== "localhost") {
+			ReactGA.initialize(googleAnalyticsCode);
+			ReactGA.pageview(window.location.pathname+window.location.search)
 		}
-
-		var tmpStyle = JSON.parse(JSON.stringify(style))
-		if (hover) {
-			tmpStyle.borderBottom = "2px solid #4285F5"
-			tmpStyle.color = "#4285F5"
-		}
-
-		return (
-			<a href={props.href} style={{paddingRight: 35, textDecoration: "none"}} onMouseOut={() => {setHover(false)}} onMouseOver={() => {setHover(true)}}>
-				<Typography color="textSecondary" style={tmpStyle}>
-					{props.text}	
-				</Typography>
-			</a>
-		)
-	}
+	})
 
 	const SocialIconHandler = (props) => {
-		const [hover, setHover] = useState(false)	
+		const [hover, ] = useState(false)	
 		const platform = props.data
 		const style = {
 			height: 80,
@@ -134,13 +128,14 @@ const App = () => {
 		width: "100%",
 		minHeight: isMobile ? "100%" : 711,
 		paddingTop: 200,
+		paddingBottom: 200,
 	}
 
 	const WorkingOnItem = (props) => {
 		const data = props.data	
 
 		var innerStyle = {
-			margin: 10,
+			margin: 15,
 			padding: 10,
 			display: "flex",
 			textAlign: "left",
@@ -152,8 +147,10 @@ const App = () => {
 
 		return (
 			<div elevation={elevation} style={innerStyle}>
-				<img alt={props.title} src={data.image} style={{width: 302, borderRadius: 25, height: "100%",}}/>
-				<div>
+				<div style={{minWidth: 302, maxHeight: "100%", textAlign: "center",}}>
+					<img alt={props.title} src={data.image} style={{maxWidth: 302, borderRadius: 25, maxHeight: "100%",}}/>
+				</div>
+				<div style={{marginLeft: 30}}>
 					<a href={data.link} style={{textDecoration: "none"}}>
 						<Typography variant={isMobile ? "h6" : "h4"} style={{color: "#3377CC"}}>
 								{data.title}
@@ -172,7 +169,7 @@ const App = () => {
 
 	const introduction = 
 		<div style={heroStyle}>
-			<div style={{margin: "auto", textAlign: "center", maxWidth: 850, paddingTop: isMobile ? 50 : 0}}>
+			<div style={{margin: "auto", textAlign: "center", maxWidth: 1000, paddingTop: isMobile ? 50 : 0}}>
 				<Typography variant="body1" color="textPrimary" style={{lineHeight: "1em", fontSize: isMobile ? 40 : null}}>
 					Hey, I'm
 				</Typography>
@@ -190,21 +187,41 @@ const App = () => {
 					})}
 				</div>
 				<Divider style={{marginTop: 100}}/>
-				<Typography variant={isMobile ? "h6" : "h4"} color="textPrimary" style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>
-					What I'm working on
+				<Typography variant={isMobile ? "h6" : "h4"} color="textPrimary" style={{marginTop: 20, marginLeft: 15, marginRight: 15, marginBottom: 30,}}>
+					<b>Current projects</b>
 				</Typography>
 				{workingOn.map(data => {
 					return <WorkingOnItem data={data}/> 	
 				})}
+				<Typography variant={isMobile ? "h6" : "h4"} color="textPrimary" style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>
+					Old projects and workplaces can be found on <a href="https://github.com/frikky">Github</a> and <a href="https://www.linkedin.com/in/frikky">Linkedin</a> :)	
+				</Typography>
 			</div>
 		</div>
 
-	const appbar = 
-			<AppBar elevation={1} id="appbar" style={{boxShadow: "none", backgroundColor: "rgba(255,255,255,1)", color: "rgba(0,0,0,0.9)"}}>	
-				<div style={{margin: "auto", textAlign: "center",}}>
-					<AppbarButton href="/" text={"Home"} />
-				</div>
-			</AppBar>	
+	// FIXME - add appbar
+	// const AppbarButton = (props) => {
+	// 	const style = {
+	// 		fontSize: 20,
+	// 		height: 34,
+	// 		marginTop: 9,
+	// 	}
+
+	// 	//var tmpStyle = JSON.parse(JSON.stringify(style))
+	// 	return (
+	// 		<a href={props.href} style={{paddingRight: 35, textDecoration: "none"}}>
+	// 			<Typography color="textSecondary" style={style}>
+	// 				{props.text}	
+	// 			</Typography>
+	// 		</a>
+	// 	)
+	// }
+	//const appbar = 
+	//		<AppBar elevation={1} id="appbar" style={{boxShadow: "none", backgroundColor: "rgba(255,255,255,1)", color: "rgba(0,0,0,0.9)"}}>	
+	//			<div style={{margin: "auto", textAlign: "center",}}>
+	//				<AppbarButton href="/" text={"Home"} />
+	//			</div>
+	//		</AppBar>	
 
 	return (
 		<MuiThemeProvider theme={theme}>
