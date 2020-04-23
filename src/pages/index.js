@@ -48,7 +48,7 @@ const theme = createMuiTheme({
 
 const App = () => {
 	const title = "Fredrik"
-	const subtitle = "Founder, developer and security engineer"
+	const subtitle = "Entrepreneur, developer and security engineer"
 	const platforms = [{
 		"url": "https://twitter.com/frikkylikeme",
 		"network": "twitter",
