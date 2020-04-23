@@ -1,7 +1,7 @@
 {
   "name": "frikky.com",
   "private": false,
-  "description": "A basic template site for Fredrik",
+  "description": "A basic site",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
