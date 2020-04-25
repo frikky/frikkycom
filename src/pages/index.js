@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 //import SEO from "./seo"
 import { SocialIcon } from 'react-social-icons';
+import { Helmet } from "react-helmet"
 
 // main: '#4285F5',
 // main: '#41dcab',
@@ -91,7 +92,7 @@ const App = () => {
 	{
 		"title": "Alpakafarm - Webshop",
 		"role": "Tech and sales help",
-		"description": "Alpakafarm is my dads' tourist farm that started struggling due to COVID-19. We're working on setting up the webshop to help them through this tough season!",
+		"description": "Alpakafarm is my dad's tourist farm that started struggling due to COVID-19. We're setting up a webshop to help them through it :)",
 		"link": "https://alpakafarm.eu",
 		"image": "/images/alpaca.webp",
 	}
@@ -127,7 +128,7 @@ const App = () => {
 	const heroStyle = {
 		width: "100%",
 		minHeight: isMobile ? "100%" : 711,
-		paddingTop: 200,
+		paddingTop: isMobile ? 50 : 200,
 		paddingBottom: 200,
 	}
 
@@ -139,6 +140,7 @@ const App = () => {
 			padding: 10,
 			display: "flex",
 			textAlign: "left",
+			flexDirection: isMobile ? "column" : "row",
 		}
 		//minHeight: 250,
 		//maxHeight: 250,
@@ -147,10 +149,10 @@ const App = () => {
 
 		return (
 			<div elevation={elevation} style={innerStyle}>
-				<div style={{minWidth: 302, maxHeight: "100%", textAlign: "center",}}>
-					<img alt={props.title} src={data.image} style={{maxWidth: 302, borderRadius: 25, maxHeight: "100%",}}/>
+				<div style={{minWidth: isMobile ? "100%" : 302, maxHeight: "100%", textAlign: "center",}}>
+					<img alt={props.title} src={data.image} style={{maxWidth: isMobile ? "100%" : 302, borderRadius: 25, maxHeight: "100%",}}/>
 				</div>
-				<div style={{marginLeft: 30}}>
+				<div style={{marginLeft: isMobile ? 0 : 30, marginTop: isMobile ? 30 : 0}}>
 					<a href={data.link} style={{textDecoration: "none"}}>
 						<Typography variant={isMobile ? "h6" : "h4"} style={{color: "#3377CC"}}>
 								{data.title}
@@ -191,7 +193,10 @@ const App = () => {
 					<b>Current projects</b>
 				</Typography>
 				{workingOn.map(data => {
-					return <WorkingOnItem data={data}/> 	
+					return <div style={{marginTop: isMobile ? 50 : 30,}}>
+						<WorkingOnItem data={data} style={{}} /> 	
+						{isMobile ? <Divider /> : null}
+					</div>
 				})}
 				<Typography variant={isMobile ? "h6" : "h4"} color="textPrimary" style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>
 					Old projects and workplaces can be found on <a href="https://github.com/frikky">Github</a> and <a href="https://www.linkedin.com/in/frikky">Linkedin</a> :)	
@@ -222,9 +227,67 @@ const App = () => {
 	//				<AppbarButton href="/" text={"Home"} />
 	//			</div>
 	//		</AppBar>	
+	
+	const firstJson = JSON.stringify({
+					"@context": "http://schema.org",
+					"@type": "Organization",
+					"name": "Frikky",
+					"url": "https://frikky.com",
+					"logo": "https://frikky.com/images/torbjorn.jpg",
+					"email": "fredrik@niceable.co",
+					"sameAs" : [
+							"https://twitter.com/frikky",
+							"https://www.youtube.com/channel/UCdk-NpmnoPwP4_6bHZYGKIQ?view_as=subscriber",
+							"https://www.instagram.com/frikkylikeme",
+							"https://www.linkedin.com/in/frikky/",
+							"https://github.com/frikky",
+							"https://medium.com/@Frikkylikeme"
+					],
+					"contactPoint" : [
+							{
+									"@type" : "ContactPoint",
+									"contactType" : "customer service",
+									"email": "fredrik@niceable.co",
+									"url": "https://niceable.co"
+							}
+					]
+			})
+	
+	const secondJson = JSON.stringify({
+				"@context": "http://schema.org",
+				"@type": "WebSite",
+				"name": "Frikky",
+				"url": "https://frikky.com",
+				"sameAs" : [
+						"https://twitter.com/frikky",
+						"https://www.youtube.com/channel/UCdk-NpmnoPwP4_6bHZYGKIQ?view_as=subscriber",
+						"https://www.instagram.com/frikkylikeme",
+						"https://www.linkedin.com/in/frikky/",
+						"https://github.com/frikky",
+						"https://medium.com/@Frikkylikeme"
+				]
+		})
+
+	const description = "Co-founder & CTO of Niceable. Developer and security engineer"
+	const helmet = 
+		<Helmet>
+			<title>I'm {title}</title>
+			<link rel="canonical" href="https://frikky.com" />
+			<meta
+				name="Description"
+				content={description}
+			/>
+			<meta property="og:title" content={`${title}'s`} />
+			<meta property="og:description" content={description} />
+			<meta property="og:image" content="https://frikky.com/images/torbjorn.jpg" />
+			<meta property="og:url" content="https://frikky.com" />
+			<script type="application/ld+json">{firstJson}</script>
+			<script type="application/ld+json">{secondJson}</script>
+		</Helmet>
 
 	return (
 		<MuiThemeProvider theme={theme}>
+			{helmet}
 			<div style={{paddingTop: 50, backgroundColor: "white", scrollBehavior: "smooth"}}>
 				{introduction}
 			</div>

@@ -4,6 +4,7 @@ module.exports = {
     description: `Blog, social and everything else`,
     author: `gatsbyjs`,
   },
+	plugins: [`gatsby-plugin-react-helmet`]
 }
 
 /*
