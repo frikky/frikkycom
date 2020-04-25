@@ -49,7 +49,10 @@ const theme = createMuiTheme({
 const App = () => {
 	const title = "Fredrik"
 	const subtitle = "Entrepreneur, developer and security engineer"
+	const mainImage = "https://frikky.com/images/me.jpg"
+	const description = "Co-founder & CTO of Niceable. Developer and security engineer"
 	const googleAnalyticsCode = "UA-147420730-2"
+
 	const platforms = [{
 		"url": "https://twitter.com/frikkylikeme",
 		"network": "twitter",
@@ -233,7 +236,7 @@ const App = () => {
 					"@type": "Organization",
 					"name": "Frikky",
 					"url": "https://frikky.com",
-					"logo": "https://frikky.com/images/torbjorn.jpg",
+					"logo": {mainImage},
 					"email": "fredrik@niceable.co",
 					"sameAs" : [
 							"https://twitter.com/frikky",
@@ -268,7 +271,7 @@ const App = () => {
 				]
 		})
 
-	const description = "Co-founder & CTO of Niceable. Developer and security engineer"
+
 	const helmet = 
 		<Helmet>
 			<title>I'm {title}</title>
@@ -279,7 +282,7 @@ const App = () => {
 			/>
 			<meta property="og:title" content={`${title}'s`} />
 			<meta property="og:description" content={description} />
-			<meta property="og:image" content="https://frikky.com/images/torbjorn.jpg" />
+			<meta property="og:image" content={mainImage} />
 			<meta property="og:url" content="https://frikky.com" />
 			<script type="application/ld+json">{firstJson}</script>
 			<script type="application/ld+json">{secondJson}</script>
