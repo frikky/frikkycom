@@ -79,13 +79,6 @@ const App = () => {
 		"image": "/images/niceable.png",
 	},
 	{
-		"title": "Habitual - Routine chatbot",
-		"role": "Developer",
-		"description": "Habitual is a chatbot I made to help keep myself accountable. It periodically checks in to see whether I've done the habit I'm trying to incorporate. Future vision is more dynamic chatting and a personal CRM-like system. Has an accountability system where if you screw up, it will tell a friend",
-		"link": "https://m.me/habitualbot",
-		"image": "/images/torbjorn.jpg",
-	},
-	{
 		"title": "Shuffle - Cyber Security automation",
 		"role": "Co-Founder & CEO",
 		"description": "Shuffle was created as a need for framework implementation automation in Information Security. Being a security engineer and forensic analyst taught me a lot about the need for automation, and this was a new, accessible approach.",
@@ -98,7 +91,14 @@ const App = () => {
 		"description": "Alpakafarm is my dad's tourist farm that started struggling due to COVID-19. We're setting up a webshop to help them through it :)",
 		"link": "https://alpakafarm.eu",
 		"image": "/images/alpaca.webp",
-	}
+	},
+	{
+		"title": "Habitual - Routine chatbot",
+		"role": "Developer",
+		"description": "Habitual is a chatbot I made to help keep myself accountable. It periodically checks in to see whether I've done the habit I'm trying to incorporate. Future vision is more dynamic chatting and a personal CRM-like system. Has an accountability system where if you screw up, it will tell a friend",
+		"link": "https://m.me/habitualbot",
+		"image": "/images/torbjorn.jpg",
+	},
 	]
 
   useEffect(() => {
@@ -135,15 +135,14 @@ const App = () => {
 		paddingBottom: 200,
 	}
 
+	console.log("MOB: ", isMobile)
+
 	const WorkingOnItem = (props) => {
 		const data = props.data	
-
-		var innerStyle = {
+		const innerStyle = {
 			margin: 15,
 			padding: 10,
-			display: "flex",
 			textAlign: "left",
-			flexDirection: isMobile ? "column" : "row",
 		}
 		//minHeight: 250,
 		//maxHeight: 250,
@@ -153,9 +152,9 @@ const App = () => {
 		return (
 			<div elevation={elevation} style={innerStyle}>
 				<div style={{minWidth: isMobile ? "100%" : 302, maxHeight: "100%", textAlign: "center",}}>
-					<img alt={props.title} src={data.image} style={{maxWidth: isMobile ? "100%" : 302, borderRadius: 25, maxHeight: "100%",}}/>
+					<img alt={props.title} src={data.image} style={{maxWidth: isMobile ? "100%" : "100%", borderRadius: 25, maxHeight: "100%",}}/>
 				</div>
-				<div style={{marginLeft: isMobile ? 0 : 30, marginTop: isMobile ? 30 : 0}}>
+				<div style={{marginLeft: isMobile ? 0 : 30, marginTop: 30}}>
 					<a href={data.link} style={{textDecoration: "none"}}>
 						<Typography variant={isMobile ? "h6" : "h4"} style={{color: "#3377CC"}}>
 								{data.title}
@@ -168,17 +167,23 @@ const App = () => {
 						{data.description}
 					</Typography>
 				</div>
+				<Divider style={{marginTop: 30}}/>
 			</div>
 		)
+	}
+
+	const nameStyle = {
+		lineHeight: "1em", 
+		fontSize: isMobile ? 40 : null,
 	}
 
 	const introduction = 
 		<div style={heroStyle}>
 			<div style={{margin: "auto", textAlign: "center", maxWidth: 1000, paddingTop: isMobile ? 50 : 0}}>
-				<Typography variant="body1" color="textPrimary" style={{lineHeight: "1em", fontSize: isMobile ? 40 : null}}>
+				<Typography variant="body1" color="textPrimary" style={{lineHeight: "1em", }}>
 					Hey, I'm
 				</Typography>
-				<Typography variant="h1" color="textPrimary" style={{lineHeight: "1em", fontSize: isMobile ? 40 : null}}>
+				<Typography variant="h1" color="textPrimary" style={nameStyle}>
 					<b>{title}</b>
 				</Typography>
 				<Typography variant={isMobile ? "h6" : "h4"} color="textPrimary" style={{marginTop: 20, marginLeft: 15, marginRight: 15}}>

@@ -7,3 +7,14 @@ https://frikky.com
 
 ## Blogpost
 A blogpost will eventually come on this over at https://medium.com/@frikkylikeme
+
+## Dev
+```bash
+gatsby develop
+```
+
+## Prod build
+```
+gatsby build
+gatsby serve
+```
