@@ -72,18 +72,19 @@ const App = () => {
 	]
 
 	const workingOn = [{
-		"title": "Niceable - Fundraising for charities",
-		"role": "Co-Founder & CTO",
-		"description": "Niceable is a fundraising platform for non-profits. We use Raffles to make charitable giving accessible and fun with a minimum entry amount of only $1.",
-		"link": "https://niceable.co",
-		"image": "/images/niceable.png",
-	},
-	{
 		"title": "Shuffle - Cyber Security automation",
 		"role": "Co-Founder & CEO",
 		"description": "Shuffle was created as a need for framework implementation automation in Information Security. Being a security engineer and forensic analyst taught me a lot about the need for automation, and this was a new, accessible approach.",
 		"link": "https://shuffler.io",
 		"image": "/images/shuffler.png",
+	},
+	{
+		"title": "Niceable - Fundraising for charities",
+		"role": "Co-Founder & CTO",
+		"description": "Niceable is a fundraising platform for non-profits. We use Raffles to make charitable giving accessible and fun with a minimum entry amount of only $1.",
+		"link": "https://niceable.co",
+		"image": "/images/niceable.png",
+		"discontinued": true,
 	},
 	{
 		"title": "Alpakafarm - Webshop",
@@ -98,7 +99,6 @@ const App = () => {
 		"description": "Habitual is a chatbot I made to help keep myself accountable. It periodically checks in to see whether I've done the habit I'm trying to incorporate. Future vision is more dynamic chatting and a personal CRM-like system. Has an accountability system where if you screw up, it will tell a friend",
 		"link": "https://m.me/habitualbot",
 		"image": "/images/torbjorn.jpg",
-		"discontinued": true,
 	},
 	]
 
