@@ -98,6 +98,7 @@ const App = () => {
 		"description": "Habitual is a chatbot I made to help keep myself accountable. It periodically checks in to see whether I've done the habit I'm trying to incorporate. Future vision is more dynamic chatting and a personal CRM-like system. Has an accountability system where if you screw up, it will tell a friend",
 		"link": "https://m.me/habitualbot",
 		"image": "/images/torbjorn.jpg",
+		"discontinued": true,
 	},
 	]
 
@@ -163,6 +164,11 @@ const App = () => {
 					<Typography variant={isMobile ? "h6" : "h5"} style={{color: "#5e9516"}}>
 						{data.role}
 					</Typography>
+					{data.discontinued && (
+						<Typography variant="body2" style={{color: theme.palette.error.main, fontWeight: "bold", marginTop: 10}}>
+							DISCONTINUED
+						</Typography>
+					)}
 					<Typography variant={"body1"} color={"textSecondary"} style={{marginTop: 30,}}>
 						{data.description}
 					</Typography>
