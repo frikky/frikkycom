@@ -72,18 +72,19 @@ const App = () => {
 	]
 
 	const workingOn = [{
-		"title": "Niceable - Fundraising for charities",
-		"role": "Co-Founder & CTO",
-		"description": "Niceable is a fundraising platform for non-profits. We use Raffles to make charitable giving accessible and fun with a minimum entry amount of only $1.",
-		"link": "https://niceable.co",
-		"image": "/images/niceable.png",
-	},
-	{
 		"title": "Shuffle - Cyber Security automation",
 		"role": "Co-Founder & CEO",
 		"description": "Shuffle was created as a need for framework implementation automation in Information Security. Being a security engineer and forensic analyst taught me a lot about the need for automation, and this was a new, accessible approach.",
 		"link": "https://shuffler.io",
 		"image": "/images/shuffler.png",
+	},
+	{
+		"title": "Niceable - Fundraising for charities",
+		"role": "Co-Founder & CTO",
+		"description": "Niceable is a fundraising platform for non-profits. We use Raffles to make charitable giving accessible and fun with a minimum entry amount of only $1.",
+		"link": "https://niceable.co",
+		"image": "/images/niceable.png",
+		"discontinued": true,
 	},
 	{
 		"title": "Alpakafarm - Webshop",
@@ -163,6 +164,11 @@ const App = () => {
 					<Typography variant={isMobile ? "h6" : "h5"} style={{color: "#5e9516"}}>
 						{data.role}
 					</Typography>
+					{data.discontinued && (
+						<Typography variant="body2" style={{color: theme.palette.error.main, fontWeight: "bold", marginTop: 10}}>
+							DISCONTINUED
+						</Typography>
+					)}
 					<Typography variant={"body1"} color={"textSecondary"} style={{marginTop: 30,}}>
 						{data.description}
 					</Typography>
